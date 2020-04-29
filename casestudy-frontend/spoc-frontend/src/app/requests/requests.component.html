@@ -13,7 +13,13 @@
                     <tr>
                         <td>Domain: HealthCare</td>
                     </tr>
-                    <tr><td><input type=button value="View Request"></td></tr>
+                    <tr>
+                        <td>
+                            <a routerLink="/viewrequest">
+                                <input type=button value="View Request">
+                            </a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -145,3 +151,5 @@
         </div>
     </div>
 </div>
+
+<router-outlet></router-outlet>

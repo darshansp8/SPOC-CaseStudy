@@ -20,7 +20,8 @@
 
 .container h1{
     padding-left: 10vh;
-    font-size: 3.5rem;
+    font-size: 3rem;
+    font-weight: 700;
     margin-bottom: var(--gutter-vertical-sm);
 }
 

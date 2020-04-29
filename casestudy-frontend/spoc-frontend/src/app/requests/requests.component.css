@@ -14,8 +14,8 @@
     font-weight: 700;
     line-height: 3.2rem;
 	/*margin-top: 10px;*/
-    margin-top: var(--gutter-vertical-sm);
-    margin: var(--gutter-vertical-sm)  var(--gutter-horizontal);
+    /* margin-top: calc(2 * var(--gutter-vertical)); */
+    margin: var(--gutter-vertical)  var(--gutter-horizontal);
     /* margin-left:; */
 
 }
@@ -29,9 +29,13 @@
     border-radius: .7rem;
 	overflow-x: hidden;
 	transition: .3s;
-    background-color: white;
+    background-color: rgb(243, 242, 255);
     cursor: pointer;
 }
+
+/* .row-content{
+    background-color: rgb;
+} */
 
 .table{
     border-collapse: collapse;
