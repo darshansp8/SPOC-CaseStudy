@@ -1,9 +1,9 @@
 .row-container{
-    /* width: 144rem; */
+    width: 144rem;
     padding-left: calc(2 * var(--gutter-horizontal));
 	display: inline-block;
 	vertical-align: top;
-	max-width: var(--gutter-width);
+	/* max-width: var(--gutter-width); */
 	/* background-color: #f1f1f1; */
 	/*color: white;*/
 }
@@ -64,6 +64,15 @@
 
 }
 /* Card hover property end */
+
+input{
+    padding: .5rem 0;
+    padding-left: .5rem;
+    font-size: 1.5rem;
+    outline: none;
+    border: none;
+    background-color: rgb(243, 242, 255);
+}
 
 /* Input button styling */
 input[type="button"]{

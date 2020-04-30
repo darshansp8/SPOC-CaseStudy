@@ -18,18 +18,31 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- <tr>
+                    <td><input type="number" [(ngModel)] = "singleRequest.requestId"></td>
+                    <td><input type="text" [(ngModel)] = "singleRequest.pmName"></td>
+                    <td><input type="text" [(ngModel)] = "singleRequest.technologyId"></td>
+                    <td><input type="text" [(ngModel)] = "singleRequest.verticalId"></td>
+                    <td><input type="text" [(ngModel)] = "singleRequest.trainingMode"></td>
+                    <td><input type="number" [(ngModel)] = "singleRequest.candidateCount"></td>
+                    <td><input type="date" [(ngModel)] = "singleRequest.trainingStartDate"></td>
+                    <td><input type="date" [(ngModel)] = "singleRequest.trainingEndDate"></td>
+                    <td><input type="time" [(ngModel)] = "singleRequest.trainingStartTime"></td>
+                    <td><input type="time" [(ngModel)] = "singleRequest.trainingEndTime"></td>
+                    <td><input type="text" [(ngModel)] = "singleRequest.comment"></td>
+                </tr> -->
                 <tr>
-                    <td>1</td>
-                    <td>John Doe</td>
-                    <td>Javascript</td>
-                    <td>VIT</td>
-                    <td>Classroom</td>
-                    <td>30</td>
-                    <td>1 May, 2020</td>
-                    <td>7 May, 2020</td>
-                    <td>10 AM</td>
-                    <td>4 PM</td>
-                    <td>Null</td>
+                    <td>{{singleRequest.requestId}}</td>
+                    <td>{{singleRequest.pmName}}</td>
+                    <td>{{singleRequest.technologyId}}</td>
+                    <td>{{singleRequest.verticalId}}</td>
+                    <td>{{singleRequest.trainingMode}}</td>
+                    <td>{{singleRequest.candidateCount}}</td>
+                    <td>{{singleRequest.trainingStartDate}}</td>
+                    <td>{{singleRequest.trainingEndDate}}</td>
+                    <td>{{singleRequest.trainingStartTime}}</td>
+                    <td>{{singleRequest.trainingEndTime}}</td>
+                    <td>{{singleRequest.comment}}</td>
                 </tr>
             </tbody>
         </table>

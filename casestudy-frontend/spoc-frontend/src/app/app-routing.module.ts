@@ -7,7 +7,7 @@ import { ViewRequestsComponent } from './view-requests/view-requests.component';
 const routes: Routes = [
   {path: '', redirectTo: 'pendingrequests', pathMatch: 'full'},
   {path: "pendingrequests", component: RequestsComponent},
-  {path: "viewrequest", component: ViewRequestsComponent}
+  {path: "viewrequest/:id", component: ViewRequestsComponent}
 ];
 
 @NgModule({

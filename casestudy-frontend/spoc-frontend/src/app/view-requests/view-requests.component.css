@@ -74,12 +74,12 @@
     color: #3d3d3d;
 }
 
-.table-container{
+/* .table-container{
     margin-bottom: var(--gutter-vertical-sm);   
-}
+} */
 
 .form{
-    padding-left: 10vh;
+    padding-left: 6vh;
 }
 
 .form-grp:not(:last-child){
@@ -124,6 +124,8 @@
     border: none;
     color: rgb(243, 242, 255);
 } */
+
+
 
 
 

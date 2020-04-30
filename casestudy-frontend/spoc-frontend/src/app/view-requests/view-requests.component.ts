@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiServiceService } from '../api-service.service';
+import { Time } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-requests',
@@ -27,9 +30,33 @@ export class ViewRequestsComponent implements OnInit {
     {id: 3, number: 125, capacity: 23},
     {id: 4, number: 125, capacity: 25}
   ];
-  constructor() { }
+
+  public singleRequest: any=[];
+  requestId:number;
+  verticalId:number;
+  technologyId:number;
+  pmName:string;
+  candidateCount:number;
+  trainingMode:string;
+  trainingStartDate:Date;
+  trainingEndDate:Date;
+  trainingStartTime:Time;
+  trainingEndTime:Time;
+  comment:any;
+  requestStatus:boolean;
+
+  public request_id:any;
+
+  constructor(private api: ApiServiceService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('id');
+    this.request_id = id;
+    // console.log(this.request_id);
+    this.api.getRequestById(this.request_id)
+    .subscribe(data => 
+      this.singleRequest = data);
+    console.log(this.singleRequest);
   }
 
   selectCheckboxTrainer(e){

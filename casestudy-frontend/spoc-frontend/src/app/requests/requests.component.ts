@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../api-service.service';
 import { Time } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-requests',
@@ -9,7 +10,7 @@ import { Time } from '@angular/common';
 })
 export class RequestsComponent implements OnInit {
 
-  public pendingRequests:any [];
+  public pendingRequests:any = [];
   requestId:number;
   verticalId:number;
   technologyId:number;
@@ -23,15 +24,20 @@ export class RequestsComponent implements OnInit {
   comment:any;
   requestStatus:boolean;
 
-  constructor(private api: ApiServiceService) { }
+  constructor(private api: ApiServiceService, private router: Router) { }
 
   ngOnInit(): void {
     this.api.getPendingRequest()
     .subscribe(data => {
       this.pendingRequests = Array.from(Object.keys(data), k => data[k]);
     });
+    // this.api.currentDetails.subscribe(request => {
+    //   this.pendingRequests = Array.from(Object.keys(request), k => request[k]);
+    // });
   }
 
-
+  newData(request: any){
+    this.router.navigate(['/viewrequest', request.requestId]);
+  }
 
 }

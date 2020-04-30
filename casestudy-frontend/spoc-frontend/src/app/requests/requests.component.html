@@ -1,155 +1,37 @@
 <div class="row-container">
     <h1>Pending Requests</h1>
-    <div *ngFor = "let req of pendingRequests"class="row border-round">
+    <div *ngFor = "let req of pendingRequests; let i =index" class="row border-round">
         <div class="row-content">
             <table class="table">
                 <tbody>
-                    <tr>
-                        <td>Id:{{req.requestId}}</td>
+                    <!-- <tr>
+                        <td>Id:<input type="number" [(ngModel)] = "req.requestId" disabled></td>
                     </tr>
                     <tr>
-                        <td>Technology: {{req.technologyId}}</td>
+                        <td>Technology: <input type="number" [(ngModel)] = "req.technologyId" disabled></td>
                     </tr>
                     <tr>
-                        <td>Domain: {{req.verticalId}}</td>
+                        <td>Domain: <input type="number" [(ngModel)] = "req.verticalId" disabled></td>
+                    </tr> -->
+                    <tr>
+                        <td>PM: {{req.pmName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Technology:{{req.technologyId}}</td>
+                    </tr>
+                    <tr>
+                        <td>Vertical:{{req.verticalId}}</td>
                     </tr>
                     <tr>
                         <td>
-                            <a routerLink="/viewrequest">
-                                <input type=button value="View Request">
-                            </a>
+                            <input 
+                                type=button 
+                                value="View Request" 
+                                (click) = "newData(req)">
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <!-- <div class="row border-round">
-        <div class="row-content">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Id:102</td>
-                    </tr>
-                    <tr>
-                        <td>Technology: JavaScript</td>
-                    </tr>
-                    <tr>
-                        <td>Domain: HealthCare</td>
-                    </tr>
-                    <tr><td><input type=button value="View Request"></td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row border-round">
-        <div class="row-content">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Id:103</td>
-                    </tr>
-                    <tr>
-                        <td>Technology: JavaScript</td>
-                    </tr>
-                    <tr>
-                        <td>Domain: HealthCare</td>
-                    </tr>
-                    <tr><td><input type=button value="View Request"></td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row border-round">
-        <div class="row-content">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Id:104</td>
-                    </tr>
-                    <tr>
-                        <td>Technology: JavaScript</td>
-                    </tr>
-                    <tr>
-                        <td>Domain: HealthCare</td>
-                    </tr>
-                    <tr><td><input type=button value="View Request"></td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row border-round">
-        <div class="row-content">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Id:105</td>
-                    </tr>
-                    <tr>
-                        <td>Technology: JavaScript</td>
-                    </tr>
-                    <tr>
-                        <td>Domain: HealthCare</td>
-                    </tr>
-                    <tr><td><input type=button value="View Request"></td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row border-round">
-        <div class="row-content">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Id:106</td>
-                    </tr>
-                    <tr>
-                        <td>Technology: JavaScript</td>
-                    </tr>
-                    <tr>
-                        <td>Domain: HealthCare</td>
-                    </tr>
-                    <tr><td><input type=button value="View Request"></td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
- <div class="row border-round">
-        <div class="row-content">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Id:107</td>
-                    </tr>
-                    <tr>
-                        <td>Technology: JavaScript</td>
-                    </tr>
-                    <tr>
-                        <td>Domain: HealthCare</td>
-                    </tr>
-                    <tr><td><input type=button value="View Request"></td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row border-round">
-        <div class="row-content">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Id:108</td>
-                    </tr>
-                    <tr>
-                        <td>Technology: JavaScript</td>
-                    </tr>
-                    <tr>
-                        <td>Domain: HealthCare</td>
-                    </tr>
-                    <tr><td><input type=button value="View Request"></td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div> -->
 </div>
-
-<router-outlet></router-outlet>
