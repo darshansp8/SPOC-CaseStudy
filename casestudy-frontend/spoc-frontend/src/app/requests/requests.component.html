@@ -1,17 +1,17 @@
 <div class="row-container">
     <h1>Pending Requests</h1>
-    <div class="row border-round">
+    <div *ngFor = "let req of pendingRequests"class="row border-round">
         <div class="row-content">
             <table class="table">
                 <tbody>
                     <tr>
-                        <td>Id:101</td>
+                        <td>Id:{{req.requestId}}</td>
                     </tr>
                     <tr>
-                        <td>Technology: JavaScript</td>
+                        <td>Technology: {{req.technologyId}}</td>
                     </tr>
                     <tr>
-                        <td>Domain: HealthCare</td>
+                        <td>Domain: {{req.verticalId}}</td>
                     </tr>
                     <tr>
                         <td>
@@ -24,7 +24,7 @@
             </table>
         </div>
     </div>
-    <div class="row border-round">
+    <!-- <div class="row border-round">
         <div class="row-content">
             <table class="table">
                 <tbody>
@@ -149,7 +149,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <router-outlet></router-outlet>

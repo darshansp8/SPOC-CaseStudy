@@ -6,7 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RequestsComponent } from './requests/requests.component';
 import { ViewRequestsComponent } from './view-requests/view-requests.component';
-import { from } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiServiceService } from './api-service.service';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,10 @@ import { from } from 'rxjs';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
