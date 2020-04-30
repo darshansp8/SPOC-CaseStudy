@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,13 @@ public class TrainerService {
 		Iterable<IncomingRequests> requestList = incomingRequests.findAll();
 		requestList.forEach(incReq::add);
 		return incReq;
+	}
+	
+	public Optional<IncomingRequests> findSingleRequest(int id){
+//		List<IncomingRequests> singleRequest = new ArrayList<>();
+		Optional<IncomingRequests> requestList = incomingRequests.findById(id);
+//		requestList.forEach(singleRequest::add);
+		return requestList;
 	}
 
 	@Autowired

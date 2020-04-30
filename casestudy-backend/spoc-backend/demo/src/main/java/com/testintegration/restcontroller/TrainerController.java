@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,6 +31,11 @@ public class TrainerController {
 	@RequestMapping("show")
 	public List<IncomingRequests> getIncomingRequests(){
 		return trainerService.findAllRequests();
+	}
+	
+	@RequestMapping("show/{id}")
+	public Optional<IncomingRequests> getSingleRequest(@PathVariable int id){
+		return trainerService.findSingleRequest(id);
 	}
 	
 	@RequestMapping("trainers")
