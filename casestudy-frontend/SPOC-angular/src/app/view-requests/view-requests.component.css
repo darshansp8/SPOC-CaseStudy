@@ -1,6 +1,7 @@
 .container{
     padding: 5vh 0;
     width: 100%;
+    /* transition: 5s all; */
 }
 
 /* .container-left, .container-right{
@@ -97,7 +98,7 @@
     margin-bottom: .3rem;
 }
 
-.form-grp input{
+.form-grp input, button{
     width: 100%;
     padding: 1rem 2rem;
     /* outline: none;
@@ -108,7 +109,7 @@
     font-size: 1.5rem;
 }
 
-.form-grp input[type="button"]{
+.form-grp button[type="submit"]{
     width: 35%;
     margin-left: 4vh;
     margin-top: 1rem;
@@ -120,8 +121,14 @@
     cursor: pointer;
 }
 
-.button-update input[type="button"]{
+.button-update{
+    display: inline-block;
+    vertical-align: top;
     width: 10%;
+    margin-right: 2rem;
+}
+.button-update button{
+    width: 100%;
     margin-left: 10vh;
     margin-top: 5vh;
     outline: none;

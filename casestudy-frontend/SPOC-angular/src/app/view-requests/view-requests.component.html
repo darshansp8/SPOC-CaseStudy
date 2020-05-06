@@ -1,4 +1,4 @@
-<div class="container" *ngIf = "!show">
+<div class="container" *ngIf = "!showUpdateForm && !showApprovalForm">
     <h1>Request Details</h1>
     <div class="table-container">
         <table class="table" cellspacing="0">
@@ -18,19 +18,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- <tr>
-                    <td><input type="number" [(ngModel)] = "singleRequest.requestId"></td>
-                    <td><input type="text" [(ngModel)] = "singleRequest.pmName"></td>
-                    <td><input type="text" [(ngModel)] = "singleRequest.technologyId"></td>
-                    <td><input type="text" [(ngModel)] = "singleRequest.verticalId"></td>
-                    <td><input type="text" [(ngModel)] = "singleRequest.trainingMode"></td>
-                    <td><input type="number" [(ngModel)] = "singleRequest.candidateCount"></td>
-                    <td><input type="date" [(ngModel)] = "singleRequest.trainingStartDate"></td>
-                    <td><input type="date" [(ngModel)] = "singleRequest.trainingEndDate"></td>
-                    <td><input type="time" [(ngModel)] = "singleRequest.trainingStartTime"></td>
-                    <td><input type="time" [(ngModel)] = "singleRequest.trainingEndTime"></td>
-                    <td><input type="text" [(ngModel)] = "singleRequest.comment"></td>
-                </tr> -->
                 <tr>
                     <td>{{singleRequest.requestId}}</td>
                     <td>{{singleRequest.pmName}}</td>
@@ -48,11 +35,14 @@
         </table>
     </div>
     <div class="button-update">
-        <input type="button" value="Update" (click) = "editRequest()">
+        <button type="submit" (click) = "editForm()">Update</button>
+    </div>
+    <div class="button-update">
+        <button type="submit" (click) = "approvalForm()">Approve</button>
     </div>
 </div>
 
-<div class="container" *ngIf = "!show">
+<div class="container">
     <div class="container-left">
         <h1>Available Trainers</h1>
         <div class="table-container">
@@ -66,7 +56,7 @@
                         <th>Available till Date</th>
                         <th>Available from Time</th>
                         <th>Available till Time</th>
-                        <!-- <th>Action</th> -->
+                        <th *ngIf = "showApprovalForm">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,13 +68,13 @@
                         <td>{{t.trainerAvailTillDate}}</td>
                         <td>{{t.trainerAvailFromTime}}</td>
                         <td>{{t.trainerAvailTillTime}}</td>                        
-                        <!-- <td><input id = "trainer"
+                        <td *ngIf = "showApprovalForm"><input id = "trainer"
                             type="checkbox" 
                             (name)="t"
                             [disabled]= "isCheckedTrainer && (isCheckedTrainerName!=t)"
                             (change)= "selectCheckboxTrainer($event)"
                             >
-                        </td> -->
+                        </td>
                     </tr>
                 </tbody>
                 <!-- <tbody>
@@ -131,7 +121,7 @@
                         <th>Available till Date</th>
                         <th>Available from Time</th>
                         <th>Available till Time</th>
-                        <!-- <th>Action</th> -->
+                        <th *ngIf = "showApprovalForm">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -143,51 +133,23 @@
                         <td>{{r.roomAvailTillDate}}</td>
                         <td>{{r.roomAvailFromTime}}</td>
                         <td>{{r.roomAvailTillTime}}</td>           
-                        <!-- <td><input id = "trainer"
+                        <td *ngIf = "showApprovalForm"><input id = "trainer"
                             type="checkbox" 
                             (name)="r"
                             [disabled]= "isCheckedRoom && (isCheckedRoomName!=r)"
                             (change)= "selectCheckboxRoom($event)"
                             >
-                        </td> -->
-                    </tr>
-                </tbody>
-                <!-- <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>123</td>
-                        <td>30</td>
-                        <td><input type="checkbox" name="" id="" [(ngModel)] = "roomSet"></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>123</td>
-                        <td>30</td>
-                        <td><input type="checkbox" name="" id="" [(ngModel)] = "roomSet"></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>123</td>
-                        <td>30</td>
-                        <td>
-                            <input type="checkbox" name="room" id="room" [(ngModel)] = "roomSet">
                         </td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>123</td>
-                        <td>30</td>
-                        <td><input type="checkbox" name="room" id="room" [(ngModel)] = "roomSet"></td>
-                    </tr>
-                </tbody> -->
+                </tbody>
             </table>
         </div>    
     </div>
 </div>
-<div class="container" *ngIf = "show">
+<div class="container" *ngIf = "showUpdateForm">
     <div class="container-right" >
         <h1>Processed Request</h1>
-        <form class="form" id="form" (ngSubmit)="updateRequest()">
+        <form class="form" id="form" #requestForm = "ngForm" (ngSubmit)="updateRequest()" novalidate>
             <div class="form-grp">
                 <div class="input-lable">
                     <label for="request_id">Request Id</label>
@@ -265,10 +227,100 @@
                 <div class="input-lable">
                     <label for="comments">Comments</label>
                 </div>                    
-                <input type="text" name="" id="comments">
+                <input type="text" name="comments" id="comments" [(ngModel)] = "singleRequest.comment">
             </div>
             <div class="form-grp">         
-                <input type="button" value="Submit &nbsp;&nbsp;&nbsp;&rarr;">
+                <button type="submit">Submit &nbsp;&nbsp;&nbsp;&rarr;</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container" *ngIf = "showApprovalForm && isCheckedTrainer && isCheckedRoom">
+    <div class="container-right" >
+        <h1>Processed Request</h1>
+        <form class="form" id="form" #requestForm = "ngForm" (ngSubmit)="updateRequest()" novalidate>
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="request_id">Request Id</label>
+                </div>                    
+                <input class="disabled" type="number" name="Reuest Id" id="request_id" [(ngModel)]="singleRequest.requestId" disabled>
+            </div>
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="pm_name">PM Name</label>
+                </div>                    
+                <input class="disabled" type="text" name="pm_name" id="pmName" [(ngModel)] = "singleRequest.pmName" disabled>
+            </div>
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="trainer_name">Technology</label>
+                </div>                    
+                <input class="disabled" type="text" name="techName" id="trainer_name" [(ngModel)] = "singleRequest.technology[0].technologyName" disabled>
+            </div>
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="tech_name">Vertical</label>
+                </div>                    
+                <input class="disabled" type="text" name="verticalName" id="tech_name" [(ngModel)] = "singleRequest.vertical[0].verticalName" disabled>
+            </div>
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="train_mode">Training Mode</label>
+                </div>                    
+                <input type="text" name="trainingMode" id="train_mode" [(ngModel)] = "singleRequest.trainingMode">
+            </div>
+            <!-- <div class="form-grp">
+                <div class="input-lable">
+                    <label for="vertical">Trainer</label>
+                </div>                    
+                <input type="text" name="" id="trainer">
+            </div>
+
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="room">Room Number</label>
+                </div>                    
+                <input type="number" name="" id="room">
+            </div> -->
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="count">Candidate Count</label>
+                </div>                    
+                <input class="disabled" type="number" name="candidateCount" id="count" [(ngModel)] = "singleRequest.candidateCount" disabled>
+            </div>
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="start_date">Start Date</label>
+                </div>                    
+                <input type="date" name="startDate" id="start_date" [(ngModel)] = "singleRequest.trainingStartDate">
+            </div>
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="end_date">End Date</label>
+                </div>                    
+                <input type="date" name="endDate" id="end_date" [(ngModel)] = "singleRequest.trainingEndDate">
+            </div>
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="start_time">Start Time</label>
+                </div>                    
+                <input type="time" name="startTime" id="start_time" [(ngModel)] = "singleRequest.trainingStartTime">
+            </div>
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="end_time">End Time</label>
+                </div>                    
+                <input type="time" name="endTime" id="end_time" [(ngModel)] = "singleRequest.trainingEndTime">
+            </div>
+            <div class="form-grp">
+                <div class="input-lable">
+                    <label for="comments">Comments</label>
+                </div>                    
+                <input type="text" name="comments" id="comments" [(ngModel)] = "singleRequest.comment">
+            </div>
+            <div class="form-grp">         
+                <button type="submit" value="">Submit &nbsp;&nbsp;&nbsp;&rarr;</button>
             </div>
         </form>
     </div>

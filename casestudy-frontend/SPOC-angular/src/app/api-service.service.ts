@@ -11,6 +11,7 @@ export class ApiServiceService {
   public singleRequestUrl: string = "http://localhost:8083/show/";
   public techTrainersUrl: string = "http://localhost:8083/trainers/";
   public roomUrl: string = "http://localhost:8083/rooms/";
+  public sendRequestUrl: string = "http://localhost:8083/update";
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +31,10 @@ export class ApiServiceService {
 
   getRoomByCapacity(cc){
     return this.http.get(this.roomUrl+cc);
+  }
+
+  sendRequest(request:any){
+    return this.http.post<any>(this.sendRequestUrl, request);
   }
 
 

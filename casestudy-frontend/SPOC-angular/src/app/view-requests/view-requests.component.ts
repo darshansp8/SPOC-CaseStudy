@@ -17,7 +17,8 @@ export class ViewRequestsComponent implements OnInit {
   isCheckedRoom: boolean;
   trainerSet: boolean;
   roomSet: boolean;
-  show: boolean = false;
+  showUpdateForm: boolean = false;
+  showApprovalForm: boolean = false;
 
  //For Trainers of particlaur technology
   public techTrainers: any=[];
@@ -47,7 +48,7 @@ export class ViewRequestsComponent implements OnInit {
   public room_capacity: any;
 
   public singleRequest: any=[];
-  public requestArray:any = {};
+  public requestArray:any = [];
   requestId:number;
   verticalId:number;
   verticalName:string
@@ -92,24 +93,24 @@ export class ViewRequestsComponent implements OnInit {
   }
 
 
-  editRequest(){
+  editForm(){
+    this.showUpdateForm =true;
+  }
 
-    this.show =true;
-
-    this.requestArray.requestId = this.singleRequest.requestId;
-    this.requestArray.verticalName = this.singleRequest.vertical[0].verticalName;
-    this.requestArray.pmName = this.singleRequest.pmName;
-    this.requestArray.technologyName = this.singleRequest.technology[0].technologyName;
-    this.requestArray.trainingMode = this.singleRequest.trainingMode;
-    this.requestArray.candidateCount = this.singleRequest.candidateCount;
-    this.requestArray.trainingStartDate = this.singleRequest.trainingStartDate;
-    this.requestArray.trainingEndDate = this.singleRequest.trainingEndDate;
-    this.requestArray.trainingStartTime = this.singleRequest.trainingStartTime;
-    this.requestArray.trainingEndTime = this.singleRequest.trainingEndTime;
+  approvalForm(){
+    this.showApprovalForm = true;
   }
 
   updateRequest(){
+    // this.requestArray.push(this.singleRequest);
     console.log(this.singleRequest);
+    // console.log(this.requestArray);
+
+    this.api.sendRequest(this.singleRequest)
+    .subscribe(
+      data => console.log('Success', data),
+      error => console.log('Error', error)
+    );
   }
 
   selectCheckboxTrainer(e){
