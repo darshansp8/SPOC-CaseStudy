@@ -1,13 +1,19 @@
 package com.testintegration.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
-@Entity(name = "incoming_requests") 
-public class IncomingRequests {
+
+@SuppressWarnings("serial")
+@Entity(name="incoming_requests") 
+public class IncomingRequests implements Serializable{
 	@Id	
 	private int requestId ; 
 	private int verticalId; 
@@ -21,6 +27,23 @@ public class IncomingRequests {
 	private Time trainingEndTime;
 	private String comment ;
 	private int requestStatus;
+
+	@OneToMany
+	@JoinColumn(name="verticalId",referencedColumnName="verticalId")
+	private List<Vertical> vertical;
+	public List<Vertical> getVertical() {
+		return vertical;
+	}
+	
+	
+	@OneToMany
+	@JoinColumn(name="technologyId",referencedColumnName="technologyId")
+	private List<Technology> technology;
+	public List<Technology> getTechnology() {
+		return technology;
+	}
+	
+	
 	public int getRequestId() {
 		return requestId;
 	}

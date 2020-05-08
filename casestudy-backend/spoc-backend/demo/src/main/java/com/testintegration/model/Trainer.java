@@ -1,13 +1,20 @@
 package com.testintegration.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
+
+
+@SuppressWarnings("serial")
 @Entity(name = "trainer")
-public class Trainer {
+public class Trainer implements Serializable{
 	
 	@Id
 	private int trainerId;
@@ -19,6 +26,14 @@ public class Trainer {
 	private Time trainerAvailTillTime;
 	private int alreadyAssigned;
 	private String contact;
+	
+	@OneToMany
+	@JoinColumn(name="technologyId",referencedColumnName="technologyId")
+	private List<Technology> technology;
+	public List<Technology> getTechnology() {
+		return technology;
+	}
+	
 	public int getTrainerId() {
 		return trainerId;
 	}
